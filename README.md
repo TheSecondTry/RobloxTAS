@@ -8,6 +8,11 @@ These links should explain everything about TASing.
 - [Introduction to TAS: Tool-Assisted Speedrunning (What, How, Why?)](https://www.youtube.com/watch?v=R3-ohYvi_fc)
 - [TASVideos / Welcome to TAS Videos](http://tasvideos.org/WelcomeToTASVideos.html)
 
+## How does this system work?
+This system simply saves all states of the game and plays them back, unlike what TASing emulators/programs (e.g. Mupen64, BizHawk, libTAS) normally do, which is record sequences of controller inputs and feeding those inputs into the game when playing the movie file back.
+The savestate feature saves the [CFrames](https://developer.roblox.com/en-us/api-reference/datatype/CFrame) for all of your character's body parts, as well as the camera CFrame and your character's velocity.
+The slowdown feature works by anchoring and unanchoring the character's body parts, creating the effect of the game being slowed down or paused.
+
 ## How do I use this system?
 Adding the system to a Roblox game is simple.
 First, go to the [Releases page](https://github.com/luigidasonic/RobloxTAS/releases) and download the RBXM files.
