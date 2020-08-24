@@ -2,7 +2,7 @@
 A script I made to (hopefully) give TASing tools to Roblox games.
 
 ## What is a TAS?
-A TAS, or Tool-Assisted Speedrun/Superplay, is a run of the game that uses tools like slowdown and savestates to either create an entertaining video or to create a "perfect" speedrun.
+A TAS, or Tool-Assisted Speedrun/Superplay, is a run of the game that uses tools like slowdown and savestates to either create an entertaining gameplay video or to create a "perfect" speedrun.
 These links should explain everything about TASing.
 - [How to create the perfect speedrun - Tool-assisted speedrunning explained](https://www.youtube.com/watch?v=Ietk1-Wb7oY)
 - [Introduction to TAS: Tool-Assisted Speedrunning (What, How, Why?)](https://www.youtube.com/watch?v=R3-ohYvi_fc)
