@@ -25,7 +25,7 @@ Now you can begin TASing the game you chose.
 You can start the game by clicking the "Play" button in the top menu.
 
 Once you start playing, you may notice that the game is in a "paused" state.
-If you press the backslash (\) key, the game will advance by one frame.
+If you press the backslash ( \ ) key, the game will advance by one frame.
 In order to unpause the game, press the F key.
 If you don't want the game to be slowed down, press the E key.
 
@@ -34,7 +34,7 @@ If you don't want the game to be slowed down, press the E key.
 If you want to use savestates, press the Y button to save the current state of the game and H to load the saved state.
 
 ## I'm done making my TAS! How do I play it back?
-Once you're done making your TAS, press the comma (,) key to play it back.
+Once you're done making your TAS, press the comma ( , ) key to play it back.
 **NOTE: If you're using frame advance, press the frame advance key while holding down the comma key. If using slowdown, keep pressing the comma key until it plays back.**
 
 ## When playing back my TAS, the animations are sped up. Why does this happen and how can I fix it?
