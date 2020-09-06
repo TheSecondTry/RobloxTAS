@@ -14,6 +14,7 @@ The savestate feature saves the [CFrames](https://developer.roblox.com/en-us/api
 The slowdown feature works by anchoring and unanchoring the character's body parts, creating the effect of the game being slowed down or paused.
 
 You can try out the system [here](https://web.roblox.com/games/5600348126/Roblox-TAS-Test).
+You can also see this system in action [here](https://www.youtube.com/watch?v=Qvp_G08hlvA).
 
 ## How do I use this system?
 Adding the system to a Roblox game is simple.
@@ -23,6 +24,7 @@ In the "Explorer" tab, go to the StarterPlayer folder and insert the RBXM files 
 
 Now you can begin TASing the game you chose.
 You can start the game by clicking the "Play" button in the top menu.
+**NOTE: This system only works with R6 characters and does not support R15 characters. You'll have to go to "Game Settings" and under the "Avatar" tab, set the Avatar Type to R6.**
 
 Once you start playing, you may notice that the game is in a "paused" state.
 If you press the backslash ( \ ) key, the game will advance by one frame.
