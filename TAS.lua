@@ -1,10 +1,11 @@
 repeat wait() until game:IsLoaded()
 
 local TAS = {}
--- TAS Data: 1. Head CFrame, 2. Torso CFrame, 3-4. Left Arm/Leg CFrame, 5-6. Right Arm/Leg CFrame, 7. Camera CFrame
+-- TAS Data: 1. Head, 2. Torso, 3-4. Left Arm/Leg, 5-6. Right Arm/Leg, 7. Camera, 8. Velocity
 local playback = false
 
-local character = game:GetService("Players").LocalPlayer.Character
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character
 local UserInputService = game:GetService("UserInputService")
 local Settings = script.Settings
 local Hotkeys = Settings.Hotkeys
@@ -33,6 +34,7 @@ local frame = 0
 local seconds = 0
 local rerecords = 0
 
+-- Savestates
 UserInputService.InputBegan:connect(function(input)
 	if not playback then
 		if input.KeyCode == Enum.KeyCode[FrameAdvanceToggle] then
@@ -56,6 +58,9 @@ UserInputService.InputBegan:connect(function(input)
 				Savestates[partName].Value = character[partName].CFrame
 			end
 			Savestates.Velocity.Value = character.Torso.Velocity
+			Savestates.Speed.Value = character.Humanoid.WalkSpeed
+			Savestates.JumpPower.Value = character.Humanoid.JumpPower
+			Savestates.Gravity.Value = workspace.Gravity
 			Savestates.Frame.Value = frame
 			Savestates.Seconds.Value = seconds
 			print("Saved state.")
@@ -71,6 +76,9 @@ UserInputService.InputBegan:connect(function(input)
 					character[partName].CFrame = Savestates[partName].Value
 				end
 				character.Torso.Velocity = Savestates.Velocity.Value
+				character.Humanoid.WalkSpeed = Savestates.Speed.Value
+				character.Humanoid.JumpPower = Savestates.JumpPower.Value
+				workspace.Gravity = Savestates.Gravity.Value
 				rerecords = rerecords + 1
 				print("Loaded state.")
 			else
@@ -80,15 +88,29 @@ UserInputService.InputBegan:connect(function(input)
 	end
 end)
 
--- character.Animate.Disabled = true
+-- Add GUI
 local GUI = script.ScreenGui:clone()
-GUI.Parent = game:GetService("Players").LocalPlayer.PlayerGui
+GUI.Parent = player.PlayerGui
+player.CharacterAdded:connect(function(char)
+	character = char
+	GUI = script.ScreenGui:clone()
+	GUI.Parent = player.PlayerGui
+end)
 
 print("Roblox TAS System starting..")
 repeat
 	wait()
+	-- CFrame variables
+	local headC = nil
+	local torsoC = nil
+	local leftArmC = nil
+	local rightArmC = nil
+	local leftLegC = nil
+	local rightLegC = nil
+	-- Timer
 	frame = frame + 1
 	seconds = seconds + 1 / 30
+	-- On screen timer
 	local displayH = math.floor((seconds / 60) / 60)
 	if displayH < 10 then
 		displayH = "0" .. tostring(displayH)
@@ -102,10 +124,13 @@ repeat
 		displayS = "0" .. tostring(displayS)
 	end
 	GUI.TextLabel.Text = "Frame: " .. tostring(frame) .. "\nTime: " .. displayH .. ":" .. displayM .. ":" .. displayS .. "\nRerecords: " .. tostring(rerecords)
+	-- Slowdown
 	if SlowdownEnabled then
 		script.Paused.Value = true
 		for _,partName in pairs(BodyParts) do
-			character[partName].Anchored = true
+			if character:FindFirstChild(partName) then
+				character[partName].Anchored = true
+			end
 		end
 		if FrameAdvance then
 			repeat wait() until UserInputService:IsKeyDown(Enum.KeyCode[FrameAdvanceHotkey])
@@ -113,13 +138,22 @@ repeat
 			wait(Settings.Wait.Value)
 		end
 		for _,partName in pairs(BodyParts) do
-			character[partName].Anchored = false
+			if character:FindFirstChild(partName) then
+				character[partName].Anchored = false
+			end
 		end
 		script.Paused.Value = false
 	end
-	table.insert(TAS, frame, {character.Head.CFrame, character.Torso.CFrame, character["Left Arm"].CFrame, character["Left Leg"].CFrame, character["Right Arm"].CFrame, character["Right Leg"].CFrame, workspace.CurrentCamera.CFrame})
+	if character:FindFirstChild("Head") then headC = character.Head.CFrame end
+	if character:FindFirstChild("Torso") then torsoC = character.Torso.CFrame end
+	if character:FindFirstChild("Left Arm") then leftArmC = character["Left Arm"].CFrame end
+	if character:FindFirstChild("Left Leg") then leftLegC = character["Left Leg"].CFrame end
+	if character:FindFirstChild("Right Arm") then rightArmC = character["Right Arm"].CFrame end
+	if character:FindFirstChild("Right Leg") then rightLegC = character["Right Leg"].CFrame end
+	table.insert(TAS, frame, {headC, torsoC, leftArmC, leftLegC, rightArmC, rightLegC, workspace.CurrentCamera.CFrame})
 until UserInputService:IsKeyDown(Enum.KeyCode[EndTAS])
 
+-- Playback
 playback = true
 
 local length = frame
@@ -127,7 +161,7 @@ local sLength = seconds
 frame = 0
 seconds = 0
 for _,partName in pairs(BodyParts) do
-	character[partName].Anchored = true
+	if character:FindFirstChild(partName) then character[partName].Anchored = true end
 end
 while wait() do
 	frame = frame + 1
@@ -157,12 +191,12 @@ while wait() do
 		sDisplayS = "0" .. tostring(sDisplayS)
 	end
 	GUI.TextLabel.Text = "Frame: " .. tostring(frame) .. " / " .. tostring(length) .. "\nTime: " .. displayH .. ":" .. displayM .. ":" .. displayS .. " / " .. sDisplayH .. ":" .. sDisplayM .. ":" .. sDisplayS .. "\nRerecords: " .. tostring(rerecords)
-	character.Head.CFrame = TAS[frame][1]
-	character.Torso.CFrame = TAS[frame][2]
-	character["Left Arm"].CFrame = TAS[frame][3]
-	character["Left Leg"].CFrame = TAS[frame][4]
-	character["Right Arm"].CFrame = TAS[frame][5]
-	character["Right Leg"].CFrame = TAS[frame][6]
+	if character:FindFirstChild("Head") and TAS[frame][1] ~= nil then character.Head.CFrame = TAS[frame][1] end
+	if character:FindFirstChild("Torso") and TAS[frame][2] ~= nil then character.Torso.CFrame = TAS[frame][2] end
+	if character:FindFirstChild("Left Arm") and TAS[frame][3] ~= nil then character["Left Arm"].CFrame = TAS[frame][3] end
+	if character:FindFirstChild("Left Leg") and TAS[frame][4] ~= nil then character["Left Leg"].CFrame = TAS[frame][4] end
+	if character:FindFirstChild("Right Arm") and TAS[frame][5] ~= nil then character["Right Arm"].CFrame = TAS[frame][5] end
+	if character:FindFirstChild("Right Leg") and TAS[frame][6] ~= nil then character["Right Leg"].CFrame = TAS[frame][6] end
 	workspace.CurrentCamera.CFrame = TAS[frame][7]
 	if frame >= length then
 		frame = 0
