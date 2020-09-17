@@ -523,7 +523,7 @@ game:GetService("Players").LocalPlayer.Chatted:connect(function(msg)
 
 end)
 
-script.Parent:WaitForChild("TAS").Paused.Changed:connect(function(newValue)
+game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("TAS").Paused.Changed:connect(function(newValue)
 	if newValue == true then
 		setAnimationSpeed(0.0)
 	else
