@@ -60,3 +60,12 @@ After adding the script, start up the game and open up either [the output window
 Once the game is running and either the output or developer console is open, press the key you want and you'll see the key code there.
 
 **NOTE: There are lots of settings that you can change in the Settings folder, so feel free to change some.**
+
+## What is the "GameWatch.lua" file for?
+"GameWatch.lua" is the watching program I've developed. It gives you useful information about your character that you can use to your advantage.
+
+To use it, download the script.
+Next, open the script in a **plain-text editor** such as Notepad (Windows) or GEdit (Ubuntu/Linux), or in a **code editor** such as Notepad++ (Windows), TextWrangler (MacOS), Atom, or Visual Studio Code.
+Change the value of "playerName" in line 2 to your Roblox username. Otherwise, it won't work.
+Then, in Studio, select the Plugins tab, click "Plugins Folder", and put the script in the folder.
+Now, right click on the top of any open window in Studio, and make sure Game Watch is open.
