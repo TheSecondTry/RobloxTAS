@@ -71,5 +71,5 @@ Then, in Studio, select the Plugins tab, click "Plugins Folder", and put the scr
 Now, right click on the top of any open window in Studio, and make sure Game Watch is open.
 
 ## Credits
-Me - Writing the script
+Me - Writing the script\
 [Bluely](https://www.youtube.com/channel/UCte7DCGY8Tzoe6srb47OHlA) - Suggestions
