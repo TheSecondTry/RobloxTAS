@@ -69,3 +69,7 @@ Next, open the script in a **plain-text editor** such as Notepad (Windows) or GE
 Change the value of "playerName" in line 2 to your Roblox username. Otherwise, it won't work.
 Then, in Studio, select the Plugins tab, click "Plugins Folder", and put the script in the folder.
 Now, right click on the top of any open window in Studio, and make sure Game Watch is open.
+
+## Credits
+Me - Writing the script
+[Bluely](https://www.youtube.com/channel/UCte7DCGY8Tzoe6srb47OHlA) - Suggestions
