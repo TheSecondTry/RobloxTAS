@@ -65,7 +65,7 @@ Once the game is running and either the output or developer console is open, pre
 ## What is the "GameWatch.lua" file for?
 "GameWatch.lua" is the watching program I've developed. It gives you useful information about your character that you can use to your advantage.
 
-To use it, download the script.
+To use it, download the script from the releases page. **(Versions 1.01 and newer have this script.)**
 Next, open the script in a **plain-text editor** such as Notepad (Windows) or GEdit (Ubuntu/Linux), or in a **code editor** such as Notepad++ (Windows), TextWrangler (MacOS), Atom, or Visual Studio Code.
 Change the value of "playerName" in line 2 to your Roblox username. Otherwise, it won't work.
 Then, in Studio, select the Plugins tab, click "Plugins Folder", and put the script in the folder.
