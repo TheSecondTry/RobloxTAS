@@ -1,7 +1,7 @@
 repeat wait() until game:IsLoaded()
 
 local TAS = {}
--- TAS Data: 1. Head, 2. Torso, 3-4. Left Arm/Leg, 5-6. Right Arm/Leg, 7. Camera, 8. Velocity
+-- TAS Data: 1. Head, 2. Torso, 3-4. Left Arm/Leg, 5-6. Right Arm/Leg, 7. Camera
 local playback = false
 
 local player = game:GetService("Players").LocalPlayer
