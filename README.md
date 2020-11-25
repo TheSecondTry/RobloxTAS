@@ -22,7 +22,8 @@ Adding the system to a Roblox game is simple.
 First, go to the [Releases page](https://github.com/luigidasonic/RobloxTAS/releases) and download the RBXM files.
 Next, open the game you want to TAS in Roblox Studio.
 In the "Explorer" tab, go to the StarterPlayer folder and insert the RBXM file for the TAS script into StarterPlayerScripts by right-clicking and selecting "Insert from File".
-**If using the first version of this script, insert the RBXM file for the TASing script into StarterCharacterScripts.**
+**If you're using version 1.1 or newer, there will be additional RBXM files named "TAS_Server.rbxm" and "TAS_ReplicatedStorage.rbxm". Insert "TAS_Server.rbxm" into ServerScriptService and "TAS_ReplicatedStorage.rbxm" into ReplicatedStorage.**
+**If you're using the first version of this script, insert the RBXM file for the TASing script into StarterCharacterScripts.**
 
 Now you can begin TASing the game you chose.
 You can start the game by clicking the "Play" button in the top menu.
