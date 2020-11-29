@@ -7,6 +7,7 @@ local playback = false
 local player = game:GetService("Players").LocalPlayer
 local character = player.Character
 local UserInputService = game:GetService("UserInputService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Settings = script.Settings
 local Hotkeys = Settings.Hotkeys
 local Savestates = script.TAS.Savestates
@@ -89,13 +90,8 @@ UserInputService.InputBegan:connect(function(input)
 end)
 
 -- Add GUI
-local GUI = script.ScreenGui:clone()
-GUI.Parent = player.PlayerGui
-player.CharacterAdded:connect(function(char)
-	character = char
-	GUI = script.ScreenGui:clone()
-	GUI.Parent = player.PlayerGui
-end)
+ReplicatedStorage.CreateGUI:InvokeServer()
+local GUI = player.PlayerGui:WaitForChild("ScreenGui")
 
 print("Roblox TAS System starting..")
 repeat
@@ -156,6 +152,7 @@ until UserInputService:IsKeyDown(Enum.KeyCode[EndTAS])
 -- Playback
 playback = true
 
+--[[
 local length = frame
 local sLength = seconds
 frame = 0
@@ -203,3 +200,12 @@ while wait() do
 		seconds = 0
 	end
 end
+--]]
+
+local length = frame
+local sLength = seconds
+ReplicatedStorage.PlayTAS:InvokeServer(TAS, length, sLength, rerecords)
+frame = 0
+seconds = 0
+
+
